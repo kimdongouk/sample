@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="book">
+
+	<insert id="insert" parameterType="bookDTO" useGeneratedKeys="true" keyProperty="book_id">
+		<![CDATA[
+			insert into book(title,category,price,quantity) 
+			values(#{title},#{category},#{price},0)
+		]]>
+	</insert>
+	
+	<select id="select_list" parameterType="bookDTO" resultType="bookDTO">
+	<![CDATA[
+			select book_id, title, category, price, insert_date, quantity
+			from book where 1=1
+		]]>
+		<if test="title != null">
+			and title like CONCAT('%',#{title},'%')  
+		</if>
+	<![CDATA[
+		order by insert_date desc 
+		]]>
+	</select>
+	
+	<select id="select_id" parameterType="bookDTO" resultType="bookDTO">
+	<![CDATA[
+			select book_id, title, category, price, insert_date 
+			from book  
+			where book_id = #{bookId} 
+			order by insert_date desc 
+		]]>
+	</select>
+	
+	<select id="select_detail" parameterType="bookDTO" resultType="bookDTO">
+	<![CDATA[
+			select book_id, title, category, price, insert_date, quantity  
+			from book  
+			where book_id = #{book_id} 
+		]]>
+	</select>
+	
+	<update id="update" parameterType="bookDTO">
+		<![CDATA[
+			update book set 
+			title = #{title}, category=#{category}, price=#{price} where book_id = #{book_id} 
+		]]>
+	</update>
+	
+	<update id="updateQuantity" parameterType="bookDTO">
+		<![CDATA[
+			update book set 
+			quantity = quantity + 1  where book_id = #{book_id} 
+		]]>
+	</update>
+	
+	<delete id="delete" parameterType="bookDTO">
+		<![CDATA[
+			delete from book where book_id = #{book_id}
+		]]>
+	</delete>
+	
+</mapper>

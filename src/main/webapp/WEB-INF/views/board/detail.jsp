@@ -5,31 +5,31 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>book/list.jsp</title>
+<title>board/detail.jsp</title>
 </head>
 <body>
-<h1>List</h1>
+<h1>Detail</h1>
 <table border="1">
 	<thead>
 	<tr>
-	<th>book_id</th><th>title</th><th>category</th><th>price</th><th>insert_date</th><th>quantity</th>
+	<th>seq</th><th>title</th><th>writer</th><th>content</th><th>regdate</th><th>cnt</th>
 	</tr>
 	</thead>
 	<tbody>
 	<tr>
-	<td>${data['book_id']}</td>
+	<td>${data.seq}</td>
 	<td>${data.title} </td>
-	<td>${data.category}</td>
-	<td>${data.price}</td>
-	<td>${data['insert_date']}</td>
-	<td>${data.quantity}</td>
+	<td>${data.writer}</td>
+	<td>${data.content}</td>
+	<td>${data.regdate}</td>
+	<td>${data.cnt}</td>
 	</tr>
 	</tbody>
 </table>
 <a href="list">List</a>
 <a href="create">Create</a>
 <%-- <a href="update?book_id=${data['book_id']}&title=${data.title}&category=${data.category}&price=${data.price}">Update</a> --%>
-<a href="update?book_id=${data['book_id']}">Update</a>
-<a href="delete?book_id=${data['book_id']}">Delete</a> 
+<a href="update?seq=${data.seq}">Update</a>
+<a href="delete?seq=${data.seq}">Delete</a> 
 </body>
 </html>

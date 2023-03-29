@@ -4,15 +4,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>book/update.jsp</title>
+<title>board/update.jsp</title>
 </head>
 <body>
 <form method="POST">
 	<table>
-	<tr><td>책번호 : <input type="hidden" name="book_id" value="${data['book_id']}"/>${data.book_id}</td></tr>
+	<tr><td>글번호 : <input type="hidden" name="seq" value="${data.seq}"/>${data.seq}</td></tr>
+	<tr><td>작성자 : ${data.writer} </td></tr>
 	<tr><td>제목 : <input type="text" name="title" value="${data.title}"/> </td></tr>
-	<tr><td>카테고리 : <input type="text" name="category" value="${data.category}"/> </td></tr>
-	<tr><td>가격 : <input type="text" name="price" value="${data.price}"/> </td></tr>
+	<tr><td>내용 : <input type="text" name="content" value="${data.content}"/> </td></tr>
 	<tr><td><input type="submit" value="submit" /> </td></tr>
 	</table>
 </form>
