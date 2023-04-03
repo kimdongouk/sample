@@ -21,13 +21,29 @@ const bookSearch = function() {
 		success: function(response){
 			let data = '';
 			for(row of response) {
+				const book_id = row['book_id'];
 				data += "<tr>";
 				data += "<td>"+row['title']+"</td>";
 				data += "<td>"+row['category']+"</td>";
 				data += "<td>"+row['price']+"</td>";
-				data += "</tr>";
+				data += '<td><button type="button" onclick="bookDelete('+book_id+')">delete</button>'; 
+				data += "</tr>\n";
 			}
 			$('#tbody').html(data);
+		}
+	});
+};
+
+const bookDelete = function(book_id){
+	const param = {book_id};
+	$.ajax({
+		type:'GET',
+		url:'/bookapi/delete',
+		data: param,
+		dataType:'text',
+		success: function(response){
+			console.log('response='+response);
+			bookSearch();
 		}
 	});
 };
@@ -48,12 +64,13 @@ $(function() {
 </select>
 <input type="text" name="searchWord" id="searchText">
 <button type="button" onclick="bookSearch()">11</button>
+<button type="button" value="2222">2222</button>
 <button type="submit">Search</button>
 </form>
 <table border="1">
 <thead>
 <tr>
-<th>title</th><th>category</th><th>price</th><th>quantity</th>
+<th>title</th><th>category</th><th>price</th><th>delete</th>
 </tr>
 </thead>
 <tbody id="tbody">

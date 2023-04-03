@@ -38,5 +38,10 @@ public class BookApiController {
 		return detail;
 	}
 	
+	@GetMapping("/delete")
+	public int delete(BookDTO dto) {
+		int rs = this.service.delete(dto);
+		return rs;
+	}
 	
 }
